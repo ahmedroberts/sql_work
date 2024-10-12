@@ -1,0 +1,25 @@
+--ALTER VIEW vw_client_copay_commercial AS (
+select 
+LastName = per.last_name
+, FirstName = per.first_name
+, PersonNbr = per.person_nbr
+, PayerName = pp.payer_name
+, PolicyEffDate = CAST(CAST(pp.policy_eff_date AS char(8))AS date)
+, PolicyExpDate = pp.policy_exp_date
+, PolicyNbr = pp.policy_nbr
+, PlanNbr = pp.plan_nbr
+, GroupNbr = pp.group_nbr
+, CoPayAmt = ppp.copay_amt
+, FinancialClass = ml.mstr_list_item_desc
+from ng_person_payer pp
+INNER JOIN ng_person per on pp.person_id = per.person_id
+INNER JOIN ng_payer_mstr pm on pp.payer_id = pm.payer_id
+LEFT JOIN ng_mstr_lists ml on pm.financial_class = ml.mstr_list_item_id
+LEFT JOIN ng_practice_payers_person ppp on pp.person_payer_id = ppp.person_payer_id
+where  (ml.mstr_list_item_desc like '%Commercial%')
+and (pp.active_ind = 'Y')
+and (pp.delete_ind = 'N')
+and ((pp.policy_exp_date = '') or (pp.policy_exp_date is null))
+and (not(per.last_name like 'Zz%'))
+--)
+-- We are looking to use CoPayAmt = ppp.copay_amt to have a total count of essentially each day for how many times the ppp.copay_amt is not null (how many on a day that it is filled out). Something like yesterday the CoPayAmt = ppp.copay_amt could have a total of 24 rows that had a copay amount in the field and the next day there are 30 rows that had a copay amount
