@@ -1,3 +1,6 @@
+USE [college_db];
+GO
+
 SELECT TOP (100) [student_id]
       ,[name]
       ,[email]
@@ -18,4 +21,11 @@ VALUES
 (51, 'Tsugikage', 'abc@slslsl.com', 54, 'Algeria')
 ;
 
-DELETE [students] WHERE [age] > 45;
+Select 
+	s.* 
+FROM students s
+WHERE 1 = 1
+	and [name] = 'Beast'
+
+
+-- DELETE [students] WHERE [age] > 45;
