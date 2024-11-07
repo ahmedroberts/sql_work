@@ -68,6 +68,7 @@ INSERT INTO [Admin].[Numbers] ([Number])
 SELECT TOP (1000000) n FROM Nums ORDER BY n;
 GO
 
+-- TRUNCATE TABLE [SALES].SalesPerson 
 CREATE TABLE [Sales].[SalesPersonLevel] (
 	[Id] int identity(1,1) NOT NULL,
 	[LevelName] nvarchar(500) NOT NULL,
@@ -100,7 +101,11 @@ CREATE TABLE [Sales].[SalesPerson] (
 GO
 
 WITH FirstName AS (
-	SELECT 'Tom'	AS FirstName UNION ALL
+	SELECT 'Ahmed'	AS FirstName UNION ALL
+	SELECT 'Destine'	AS FirstName UNION ALL
+	SELECT 'Alexander'	AS FirstName UNION ALL
+	SELECT 'Iveta'	AS FirstName UNION ALL
+	SELECT 'Evelyn'	AS FirstName UNION ALL
 	SELECT 'Sally'	AS FirstName UNION ALL
 	SELECT 'Bill'	AS FirstName UNION ALL
 	SELECT 'Karen'	AS FirstName UNION ALL
@@ -114,8 +119,10 @@ WITH FirstName AS (
 	SELECT 'Chris'	AS FirstName UNION ALL
 	SELECT 'Cathy'	AS FirstName UNION ALL
 	SELECT 'Dion'	AS FirstName UNION ALL
+	SELECT 'Tom'	AS FirstName UNION ALL
 	SELECT 'Aakash' AS FirstName
 ), LastName AS (
+	SELECT 'Roberts'	AS LastName UNION ALL
 	SELECT 'Jones'	AS LastName UNION ALL
 	SELECT 'Smith'	AS LastName UNION ALL
 	SELECT 'House'	AS LastName UNION ALL
@@ -126,7 +133,7 @@ WITH FirstName AS (
 	SELECT 'Lincoln' AS LastName UNION ALL
 	SELECT 'Morgan'	AS LastName UNION ALL
 	SELECT 'Jones'	AS LastName UNION ALL
-	SELECT 'Jones'	AS LastName UNION ALL
+	SELECT 'Braxton'	AS LastName UNION ALL
 	SELECT 'Kumar'	AS LastName 
 	)
 INSERT INTO [Sales].[SalesPerson]
